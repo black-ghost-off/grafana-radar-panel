@@ -3,10 +3,8 @@ import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
 import { css, cx } from '@emotion/css';
 import { useStyles2, useTheme2 } from '@grafana/ui';
-import { getStyles } from './getStyles';
-import { maping_value } from './drawSVGArc';
-import { describeArc } from './drawSVGArc';
-import { degrees_to_radians } from './drawSVGArc';
+import { getStyles } from './components/getStyles';
+import { maping_value, describeArc, degrees_to_radians } from './components/drawSVGArc';
 
 
 interface Props extends PanelProps<SimpleOptions> {}
@@ -39,18 +37,18 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     options_as.push(<text x={r*Math.sin(degrees_to_radians(deg_proc)) * scale_size} y={r*Math.cos(degrees_to_radians(deg_proc)) * scale_size} className={styles.radar_degs_nums}>{deg}</text>);        
   }  
 
-  let data_len = data.series[0].fields[1].values.length>data.series[1].fields[1].values.length?data.series[0].fields[1].values.length:data.series[1].fields[1].values.length;
+  // let data_len = data.series[0].fields[1].values.length>data.series[1].fields[1].values.length?data.series[0].fields[1].values.length:data.series[1].fields[1].values.length;
 
-  console.log(data_len);
+  // console.log(data_len);
 
-  for (let dots = 0; dots < data_len; dots++){
-    let x_c = maping_value(data.series[1].fields[1].values[dots], 0, 100, zero_offset, r * scale_size) * Math.sin(maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, start, stop));
-    let y_c = maping_value(data.series[1].fields[1].values[dots], 0, 100, zero_offset, r * scale_size) * Math.cos(maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, start, stop));
-    options_as.push(<circle cx={maping_value(data.series[1].fields[1].values[dots], 0, 100, 0, width)} cy={maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, 0, height)} r="1" fill='white' />);
-    // console.log(data.series[1].fields[1].values[dots]);
-  }
+  // for (let dots = 0; dots < data_len; dots++){
+  //   let x_c = maping_value(data.series[1].fields[1].values[dots], 0, 100, zero_offset, r * scale_size) * Math.sin(maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, start, stop));
+  //   let y_c = maping_value(data.series[1].fields[1].values[dots], 0, 100, zero_offset, r * scale_size) * Math.cos(maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, start, stop));
+  //   options_as.push(<circle cx={maping_value(data.series[1].fields[1].values[dots], 0, 100, 0, width)} cy={maping_value(degrees_to_radians(data.series[0].fields[1].values[dots]),0, 100, 0, height)} r="1" fill='white' />);
+  //   // console.log(data.series[1].fields[1].values[dots]);
+  // }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div
