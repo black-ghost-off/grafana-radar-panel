@@ -9,3 +9,13 @@
    ```bash
    npm run dev
    ```
+3. Run grafana docker container
+
+   ```bash
+   npm run dev
+   ```
+4. Go to 
+
+   ```bash
+   http://localhost:3001/
+   ```
