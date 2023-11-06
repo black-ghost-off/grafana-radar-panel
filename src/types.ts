@@ -1,7 +1,18 @@
-type SeriesSize = 'sm' | 'md' | 'lg';
-
 export interface SimpleOptions {
-  text: string;
-  showSeriesCount: boolean;
-  seriesCountSize: SeriesSize;
+  is360degrees: boolean;
+
+  StartDegree: number;
+  EndDegree: number;
+  StepsDegrees: number;
+
+  StepsDistance: number;
+
+  // RangeStartOffset: number;
+
+  RotateRadar: number;
+  ScaleRange: number;
+  ScaleSize: number;
+
+  XMove: number;
+  YMove: number;
 }

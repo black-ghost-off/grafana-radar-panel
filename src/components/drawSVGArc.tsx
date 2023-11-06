@@ -1,5 +1,5 @@
 export function polarToCartesian(centerX: number, centerY: number, radius: number, angleInDegrees: number) {
-  var angleInRadians = (angleInDegrees - 90) * Math.PI / 180;
+  let angleInRadians = (angleInDegrees - 90) * Math.PI / 180;
 
   return {
     x: centerX + (radius * Math.cos(angleInRadians)),
@@ -8,12 +8,12 @@ export function polarToCartesian(centerX: number, centerY: number, radius: numbe
 }
 export function describeArc(x: number, y: number, radius: number, startAngle: number, endAngle: number) {
 
-  var start = polarToCartesian(x, y, radius, endAngle);
-  var end = polarToCartesian(x, y, radius, startAngle);
+  let start = polarToCartesian(x, y, radius, endAngle);
+  let end = polarToCartesian(x, y, radius, startAngle);
 
-  var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+  let arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
 
-  var d = [
+  let d = [
     "M", start.x, start.y,
     "A", radius, radius, 0, arcSweep, 0, end.x, end.y,
   ].join(" ");
