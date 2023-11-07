@@ -13,6 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     env:
       # usage of GRAFANA_API_KEY is deprecated
       # GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
