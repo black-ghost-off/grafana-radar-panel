@@ -13,9 +13,14 @@
       "small": "img/logo.svg",
       "large": "img/logo.svg"
     },
+    
     "links": [],
-    "screenshots": [],
-    "version": "%VERSION%",
+    "screenshots": [
+      {
+        "name": "Static Image Panel",
+        "path": "img/view.png"
+      }
+    ],    "version": "%VERSION%",
     "updated": "%TODAY%"
   },
   "dependencies": {

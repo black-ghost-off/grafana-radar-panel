@@ -1,1 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 81.9 71.52"><defs><style>.cls-1{fill:#84aff1;}.cls-2{fill:#3865ab;}.cls-3{fill:url(#linear-gradient);}</style><linearGradient id="linear-gradient" x1="42.95" y1="16.88" x2="81.9" y2="16.88" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f2cc0c"/><stop offset="1" stop-color="#ff9830"/></linearGradient></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M55.46,62.43A2,2,0,0,1,54.07,59l4.72-4.54a2,2,0,0,1,2.2-.39l3.65,1.63,3.68-3.64a2,2,0,1,1,2.81,2.84l-4.64,4.6a2,2,0,0,1-2.22.41L60.6,58.26l-3.76,3.61A2,2,0,0,1,55.46,62.43Z"/><path class="cls-2" d="M37,0H2A2,2,0,0,0,0,2V31.76a2,2,0,0,0,2,2H37a2,2,0,0,0,2-2V2A2,2,0,0,0,37,0ZM4,29.76V8.84H35V29.76Z"/><path class="cls-3" d="M79.9,0H45a2,2,0,0,0-2,2V31.76a2,2,0,0,0,2,2h35a2,2,0,0,0,2-2V2A2,2,0,0,0,79.9,0ZM47,29.76V8.84h31V29.76Z"/><path class="cls-2" d="M37,37.76H2a2,2,0,0,0-2,2V69.52a2,2,0,0,0,2,2H37a2,2,0,0,0,2-2V39.76A2,2,0,0,0,37,37.76ZM4,67.52V46.6H35V67.52Z"/><path class="cls-2" d="M79.9,37.76H45a2,2,0,0,0-2,2V69.52a2,2,0,0,0,2,2h35a2,2,0,0,0,2-2V39.76A2,2,0,0,0,79.9,37.76ZM47,67.52V46.6h31V67.52Z"/><rect class="cls-1" x="10.48" y="56.95" width="4" height="5.79"/><rect class="cls-1" x="17.43" y="53.95" width="4" height="8.79"/><rect class="cls-1" x="24.47" y="50.95" width="4" height="11.79"/><path class="cls-1" d="M19.47,25.8a6.93,6.93,0,1,1,6.93-6.92A6.93,6.93,0,0,1,19.47,25.8Zm0-9.85a2.93,2.93,0,1,0,2.93,2.93A2.93,2.93,0,0,0,19.47,16Z"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="drop-shadow-filter-0" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 10 10 0 0.5 rgba(0,0,0,0.3)">
+      <title>Drop shadow</title>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0"/>
+      <feOffset dx="10" dy="10"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="1"/>
+      </feComponentTransfer>
+      <feFlood flood-color="rgba(0,0,0,0.3)"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="matrix(2.2840418815612793, 0, 0, 2.2840418815612793, 110.82820892333983, 155.77734375)" style="">
+    <path d="M 119.647 41.253 C 119.647 74.137 93.359 100.795 60.932 100.795 C 28.505 100.795 2.217 74.137 2.217 41.253 C 2.217 8.369 28.505 -18.289 60.932 -18.289 C 93.359 -18.289 119.647 8.369 119.647 41.253 Z" style="filter: url('#drop-shadow-filter-0'); stroke-width: 10.5077px;"/>
+    <g fill="none" stroke="#00ed00" transform="matrix(1, 0, 0, 1, -2.07276, -23.128405)">
+      <path d="m104.45 64.381c0 23.21-18.554 42.025-41.442 42.025s-41.442-18.815-41.442-42.025 18.554-42.025 41.442-42.025 41.442 18.815 41.442 42.025z" opacity=".758" style="stroke: rgb(255, 255, 255); stroke-width: 1.31346px;"/>
+      <path d="m90.977 64.381c0 15.664-12.522 28.362-27.968 28.362s-27.968-12.698-27.968-28.362 12.522-28.362 27.968-28.362c15.447 0 27.968 12.698 27.968 28.362z" opacity=".758" style="stroke: rgb(255, 255, 255); stroke-width: 1.31346px;"/>
+      <path d="m77.316 64.381c0 8.0133-6.4058 14.509-14.308 14.509-7.902 0-14.308-6.496-14.308-14.509 0-8.0132 6.4058-14.509 14.308-14.509 7.902 0 14.308 6.496 14.308 14.509z" opacity=".758" style="stroke: rgb(255, 255, 255); stroke-width: 1.31346px;"/>
+    </g>
+    <g transform="matrix(1.2425, 0, 0, 1.2425, -17.35276, -1189.728394)" stroke="#00bf00" stroke-width=".2">
+      <g fill="#0f0"/>
+      <path d="m62.882 945.54v90.661" fill="none" style="stroke: rgb(255, 255, 255); stroke-width: 1.05711px;"/>
+      <g fill="#0f0">
+        <path d="m18.183 990.49l89.146 0.2525" style="stroke: rgb(255, 255, 255); stroke-width: 1.05711px;"/>
+      </g>
+    </g>
+    <path d="M 116.657 41.253 C 116.657 84.754 70.22 111.943 33.07 90.192 C 15.828 80.098 5.207 61.442 5.207 41.253 C 5.207 -2.248 51.645 -29.437 88.795 -7.686 C 106.036 2.408 116.657 21.064 116.657 41.253 Z" fill="none" style="stroke: rgb(255, 255, 255); stroke-width: 1.31346px;"/>
+  </g>
+  <ellipse style="stroke: rgb(255, 255, 255); paint-order: stroke; fill: rgb(255, 0, 0);" cx="192.033" cy="174.396" rx="6.54" ry="6.54"/>
+  <ellipse style="stroke: rgb(255, 255, 255); paint-order: stroke; fill: rgb(255, 0, 0);" cx="304.102" cy="226.417" rx="5.054" ry="5.054"/>
+  <ellipse style="stroke: rgb(255, 255, 255); paint-order: stroke; fill: rgb(255, 0, 0);" cx="200.654" cy="339.972" rx="10.404" ry="10.404"/>
+  <ellipse style="stroke: rgb(255, 255, 255); paint-order: stroke; fill: rgb(255, 0, 0);" cx="335.315" cy="324.812" rx="7.134" ry="7.134"/>
+</svg>
