@@ -60,16 +60,18 @@ jobs:
         if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN == '' }}
         
       - name: Start grafana docker
-        if: steps.check-for-e2e.outputs.has-e2e == 'true'
         run: docker-compose up -d
+        if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
+
         
       - name: Sign plugin
         run: npx @grafana/sign-plugin@latest --rootUrls http://localhost:3001/
         if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
 
       - name: Stop grafana docker
-        if: steps.check-for-e2e.outputs.has-e2e == 'true'
         run: docker-compose down
+        if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
+
 
       - name: Get plugin metadata
         id: metadata
