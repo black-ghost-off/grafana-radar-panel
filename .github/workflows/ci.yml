@@ -14,6 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      # usage of GRAFANA_API_KEY is deprecated
+      # GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
       GRAFANA_ACCESS_POLICY_TOKEN: ${{ secrets.GRAFANA_ACCESS_POLICY_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -90,6 +92,7 @@ jobs:
           name: cypress-videos
           path: cypress/videos
           retention-days: 5
+          
       - name: Validate plugin
         run: |
           git clone https://github.com/grafana/plugin-validator
