@@ -1,15 +1,15 @@
 import React from 'react';
 import { PanelProps } from '@grafana/data';
-import { SimpleOptions } from 'types';
+import { Options } from 'types';
 import { css, cx } from '@emotion/css';
 import { useStyles2, useTheme2 } from '@grafana/ui';
 import { getStyles } from './components/getStyles';
 import { maping_value, describeArc, degrees_to_radians } from './components/drawSVGArc';
 
 
-interface Props extends PanelProps<SimpleOptions> {}
+interface Props extends PanelProps<Options> {}
 
-export function SimplePanel({
+export function Panel({
   options,
   data,
   width,
@@ -46,8 +46,8 @@ export function SimplePanel({
     scale_range = 1;
   }
 
-  let steps = options.StepsDegrees - (!options.is360degrees);
-  let step = Math.abs(start - end) / steps;
+  let degree_steps = options.StepsDegrees - (options.is360degrees?0:1);
+  let degree_step = Math.abs(start - end) / degree_steps;
   let distance_line_steps = options.StepsDistance;
   let rotate_radar = options.RotateRadar;
   let x_offset = options.XMove;
@@ -68,20 +68,22 @@ export function SimplePanel({
     }
   }
 
-  for (let deg = start; deg <= end; deg+=step) {
+  for (let deg = start; deg <= end; deg+=degree_step) {
     let deg_proc = -((deg * scale_range) + rotate_radar);
-    if(!(scale_range == 1 && deg == 360)){
+    if(!(scale_range === 1 && deg === 360)){
       options_as.push(<line x1={(r / 100 * zero_offset)*Math.sin(degrees_to_radians(deg_proc)) * scale_size} y1={(r / 100 * zero_offset)*Math.cos(degrees_to_radians(deg_proc)) * scale_size} x2={r*Math.sin(degrees_to_radians(deg_proc)) * scale_size} y2={r*Math.cos(degrees_to_radians(deg_proc)) * scale_size} stroke={theme.colors.primary.shade} />);
       options_as.push(<text x={r*Math.sin(degrees_to_radians(deg_proc)) * scale_size} y={r*Math.cos(degrees_to_radians(deg_proc)) * scale_size} className={styles.radar_degs_nums}>{deg}</text>);        
     }
   }  
   let data_len = data.series[0].fields[0].values.length;
 
+  console.log(options);
+
   for (let inc_field = 0; inc_field < data_len; inc_field++){
     let dist = data.series[0].fields[1].values[inc_field];
-    if(dist < 0) dist = 0;
-    if(dist > 100) dist = 100;
-    dist = maping_value(dist,0,100,zero_offset,r);
+    if(dist < 0) {dist = 0;}
+    if(dist > 100) {dist = 100;}
+    dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
     let rot  = maping_value(data.series[0].fields[2].values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
     let x_c  = dist * Math.sin(degrees_to_radians(rot));
     let y_c  = dist * Math.cos(degrees_to_radians(rot));

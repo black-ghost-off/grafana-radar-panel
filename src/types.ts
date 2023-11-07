@@ -1,4 +1,4 @@
-export interface SimpleOptions {
+export interface Options {
   is360degrees: boolean;
 
   StartDegree: number;
@@ -15,4 +15,5 @@ export interface SimpleOptions {
 
   XMove: number;
   YMove: number;
+  colorMode: any;
 }

@@ -1,11 +1,12 @@
-import { PanelPlugin } from '@grafana/data';
-import { SimpleOptions } from './types';
-import { SimplePanel } from './Panel';
-import { min } from 'lodash';
-import { config } from 'process';
+import { PanelPlugin } from '@grafana/data'; //
 
-export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
-  return builder
+import { Panel } from './Panel';
+import { Options } from './types';
+
+export const plugin = new PanelPlugin<Options>(Panel)
+  // .useFieldConfig()
+  .setPanelOptions((builder) => {
+    builder
     .addBooleanSwitch({
       path: 'is360degrees',
       name: 'Is radar have 360 degrees',
@@ -13,7 +14,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'StartDegree',
-      name: 'Series counter size',
+      name: 'Start degree',
       defaultValue: -90,
       settings: {
         min: -179,
@@ -23,7 +24,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'EndDegree',
-      name: 'Series counter size',
+      name: 'End degree',
       defaultValue: 90,
       settings: {
         min: -179,
@@ -33,7 +34,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'ScaleRange',
-      name: 'Series counter size',
+      name: 'Scale degree size range',
       defaultValue: 1,
       settings: {
         min: 0.5,
@@ -44,7 +45,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'StepsDegrees',
-      name: 'Series counter size',
+      name: 'How many degree lines',
       defaultValue: 5,
       settings: {
         min: 1,
@@ -53,7 +54,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })  
     .addSliderInput({
       path: 'StepsDistance',
-      name: 'Series counter size',
+      name: 'How many distance lines',
       defaultValue: 4,
       settings: {
         min: 1,
@@ -71,16 +72,16 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     // })
     .addSliderInput({
       path: 'RotateRadar',
-      name: 'Series counter size',
-      defaultValue: 1,
+      name: 'Rotate radar view',
+      defaultValue: 0,
       settings: {
         min: 0,
-        max: 360
+        max: 360,
       },
     })
     .addSliderInput({
       path: 'ScaleSize',
-      name: 'Series counter size',
+      name: 'Scale radar view',
       defaultValue: 1,
       settings: {
         min: 0.5,
@@ -90,8 +91,8 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'XMove',
-      name: 'Series counter size',
-      defaultValue: 1,
+      name: 'Move the radar in the X axis',
+      defaultValue: 0,
       settings: {
         min: -100,
         max: 100,
@@ -100,12 +101,13 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     })
     .addSliderInput({
       path: 'YMove',
-      name: 'Series counter size',
-      defaultValue: 1,
+      name: 'Move the radar in the Y axis',
+      defaultValue: 0,
       settings: {
         min: -100,
         max: 100,
         step: 1
       },
     })
-});
+  })
+  // .setNoPadding()
