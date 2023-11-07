@@ -12,7 +12,7 @@
 3. Run grafana docker container
 
    ```bash
-   npm run dev
+   sudo docker-compose up -d
    ```
 4. Go to 
 
