@@ -132,15 +132,37 @@ export const plugin = new PanelPlugin<Options>(Panel)
     })
     .addTextInput({
       path: 'Gradient',
-      name: "",
+      name: "Dots color",
       defaultValue: "#ffffff #000000",
       showIf: (config: Options) => config.GradientSource !== "Color",
     })
     .addColorPicker({
       path: 'DotsColor',
-      name: "",
+      name: "Dots color",
       defaultValue: '#ffffff',
       showIf: (config: Options) => config.GradientSource === "Color",
+    })
+    .addSliderInput({
+      path: 'DotsSize',
+      name: "Dots size",
+      defaultValue: 3,
+      settings: {
+        min: 0.1,
+        max: 10,
+        step: 0.1
+      }
+    })
+    .addFieldNamePicker({
+      path: "DegreesField",
+      name: "Degrees Field",
+    })
+    .addFieldNamePicker({
+      path: "DistanceField",
+      name: "Distance Field",
+    })
+    .addFieldNamePicker({
+      path: "PowerField",
+      name: "Power Field",
     })
   })
   // .setNoPadding()

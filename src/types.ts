@@ -18,7 +18,11 @@ export interface Options {
   colorMode: any;
 
   GradientSource: string;
-
   Gradient: string;
   DotsColor: string;
+  DotsSize: number;
+
+  DegreesField: string;
+  DistanceField: string;
+  PowerField: string;
 }
