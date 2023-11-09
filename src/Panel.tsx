@@ -6,6 +6,8 @@ import { useStyles2, useTheme2 } from '@grafana/ui';
 import { getStyles } from './components/getStyles';
 import { maping_value, describeArc, degrees_to_radians } from './components/drawSVGArc';
 
+import Gradient from "javascript-color-gradient";
+
 
 interface Props extends PanelProps<Options> {}
 
@@ -77,17 +79,29 @@ export function Panel({
   }  
   let data_len = data.series[0].fields[0].values.length;
 
-  console.log(options);
+  console.log(data);
 
   for (let inc_field = 0; inc_field < data_len; inc_field++){
     let dist = data.series[0].fields[1].values[inc_field];
     if(dist < 0) {dist = 0;}
     if(dist > 100) {dist = 100;}
     dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
-    let rot  = maping_value(data.series[0].fields[2].values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
+    let power = data.series[1].fields[1].values[inc_field];
+    let rot  = maping_value(data.series[2].fields[1].values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
     let x_c  = dist * Math.sin(degrees_to_radians(rot));
     let y_c  = dist * Math.cos(degrees_to_radians(rot));
-    options_as.push(<circle cx={x_c} cy={y_c} r="1" fill='white' />);
+    if(options.GradientSource == "Color"){
+      options_as.push(<circle cx={x_c} cy={y_c} r="1" fill={options.DotsColor} />);
+    }
+    if(options.GradientSource == "3dField"){
+      if(power == 0){ power++;}
+      const gradientArray = new Gradient()
+        .setColorGradient.apply(null, options.Gradient.split(" "))
+        .setMidpoint(100)
+        .getColor(power);
+      
+      options_as.push(<circle cx={x_c} cy={y_c} r="1" fill={gradientArray} />);
+    }
   }
 
   return (

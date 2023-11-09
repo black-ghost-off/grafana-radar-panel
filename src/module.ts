@@ -109,5 +109,36 @@ export const plugin = new PanelPlugin<Options>(Panel)
         step: 1
       },
     })
+    .addRadio({
+      path: 'GradientSource',
+      name: 'Dots gradient Source',
+      defaultValue: 'Color',
+      settings: {
+        options: [
+          {
+            value: 'Color',
+            label: 'Color',
+          },
+          // {
+          //   value: 'Time',
+          //   label: 'Time',
+          // },
+          {
+            value: '3dField',
+            label: '3d field',
+          },
+        ],
+      },
+    })
+    .addTextInput({
+      path: 'Gradient',
+      defaultValue: "#ffffff #000000",
+      showIf: (config: Options) => config.GradientSource != "Color",
+    })
+    .addColorPicker({
+      path: 'DotsColor',
+      defaultValue: '#ffffff',
+      showIf: (config: Options) => config.GradientSource == "Color",
+    })
   })
   // .setNoPadding()

@@ -61,6 +61,8 @@
     "@grafana/data": "10.0.3",
     "@grafana/runtime": "10.0.3",
     "@grafana/ui": "10.0.3",
+    "gradient-parser": "^1.0.2",
+    "javascript-color-gradient": "^2.4.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "tslib": "2.5.3"
