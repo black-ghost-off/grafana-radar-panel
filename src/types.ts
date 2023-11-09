@@ -21,4 +21,7 @@ export interface Options {
 
   Gradient: string;
   DotsColor: string;
+  DegreesField: string;
+  DistanceField: string;
+  PowerField: string;
 }

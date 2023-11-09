@@ -1,4 +1,5 @@
 import React from 'react';
+import { DataFrame, getFieldDisplayName, Field, TIME_SERIES_TIME_FIELD_NAME, } from '@grafana/data';
 import { PanelProps } from '@grafana/data';
 import { Options } from 'types';
 import { css, cx } from '@emotion/css';
@@ -8,6 +9,14 @@ import { maping_value, describeArc, degrees_to_radians } from './components/draw
 
 import Gradient from "javascript-color-gradient";
 
+function findField(frame: any, name: string) {
+  for(let seria of frame.series){
+    for(let field of seria.fields){
+      if(field.name == name){return field}
+    }
+  }
+  return 0;
+ }
 
 interface Props extends PanelProps<Options> {}
 
@@ -21,7 +30,6 @@ export function Panel({
   const styles = useStyles2(getStyles);
   let r = (height>width?width/2:height/2)/100*90;
   const options_as = [];
-  console.log(options);
   let start, end;
   let scale_range;
 
@@ -79,15 +87,15 @@ export function Panel({
   }  
   let data_len = data.series[0].fields[0].values.length;
 
-  console.log(data);
+  // console.log(findField(data, options.DegreesField));
 
   for (let inc_field = 0; inc_field < data_len; inc_field++){
-    let dist = data.series[0].fields[1].values[inc_field];
+    let dist = findField(data, options.DistanceField).values[inc_field];
     if(dist < 0) {dist = 0;}
     if(dist > 100) {dist = 100;}
     dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
-    let power = data.series[1].fields[1].values[inc_field];
-    let rot  = maping_value(data.series[2].fields[1].values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
+    let power = findField(data, options.PowerField).values[inc_field];
+    let rot  = maping_value(findField(data, options.DegreesField).values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
     let x_c  = dist * Math.sin(degrees_to_radians(rot));
     let y_c  = dist * Math.cos(degrees_to_radians(rot));
     if(options.GradientSource === "Color"){

@@ -142,5 +142,17 @@ export const plugin = new PanelPlugin<Options>(Panel)
       defaultValue: '#ffffff',
       showIf: (config: Options) => config.GradientSource === "Color",
     })
+    .addFieldNamePicker({
+      path: "DegreesField",
+      name: "Degrees Field",
+    })
+    .addFieldNamePicker({
+      path: "DistanceField",
+      name: "Distance Field",
+    })
+    .addFieldNamePicker({
+      path: "PowerField",
+      name: "Power Field",
+    })
   })
   // .setNoPadding()
