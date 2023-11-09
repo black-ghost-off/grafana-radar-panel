@@ -7,7 +7,6 @@ import { getStyles } from './components/getStyles';
 import { maping_value, describeArc, degrees_to_radians } from './components/drawSVGArc';
 
 import Gradient from "javascript-color-gradient";
-import { error } from 'console';
 
 function findField(frame: any, name: string) {
   for(let seria of frame.series){
