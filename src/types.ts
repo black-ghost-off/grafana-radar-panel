@@ -16,4 +16,9 @@ export interface Options {
   XMove: number;
   YMove: number;
   colorMode: any;
+
+  GradientSource: string;
+
+  Gradient: string;
+  DotsColor: string;
 }
