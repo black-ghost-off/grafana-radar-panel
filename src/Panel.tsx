@@ -34,6 +34,7 @@ export function Panel({
 
   let out_of_range = false;
   let start_higher_than_end = false;
+  let fieldserrot = false;
 
   if(!options.is360degrees){
     start = options.StartDegree;
@@ -84,29 +85,56 @@ export function Panel({
       options_as.push(<text x={r*Math.sin(degrees_to_radians(deg_proc)) * scale_size} y={r*Math.cos(degrees_to_radians(deg_proc)) * scale_size} className={styles.radar_degs_nums}>{deg}</text>);        
     }
   }  
-  let data_len = data.series[0].fields[0].values.length;
+  let data_len;
 
-  for (let inc_field = 0; inc_field < data_len; inc_field++){
-    let dist = findField(data, options.DistanceField).values[inc_field];
-    if(dist < 0) {dist = 0;}
-    if(dist > 100) {dist = 100;}
-    dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
-    let power = findField(data, options.PowerField).values[inc_field];
-    let rot  = maping_value(findField(data, options.DegreesField).values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
-    let x_c  = dist * Math.sin(degrees_to_radians(rot));
-    let y_c  = dist * Math.cos(degrees_to_radians(rot));
-    if(options.GradientSource === "Color"){
-      options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={options.DotsColor} />);
-    }
-    if(options.GradientSource === "3dField"){
-      if(power === 0){ power++;}
-      const gradientArray = new Gradient()
-        .setColorGradient.apply(null, options.Gradient.split(" "))
-        .setMidpoint(100)
-        .getColor(power);
-      options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={gradientArray} />);
+  if(findField(data, options.DistanceField) === 0 || findField(data, options.DegreesField) === 0){
+    fieldserrot = true;
+  }
+  else
+  {
+    data_len = findField(data, options.DistanceField).values.length;
+    for (let inc_field = 0; inc_field < data_len; inc_field++){
+      let dist = findField(data, options.DistanceField).values[inc_field];
+      if(dist < 0) {dist = 0;}
+      if(dist > 100) {dist = 100;}
+      dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
+
+      let power = findField(data, options.PowerField).values[inc_field];
+      
+      let min_time = findField(data, options.PowerField).values[0];
+      let max_time = findField(data, options.PowerField).values[findField(data, options.PowerField).values.length-1];
+
+      let rot  = maping_value(findField(data, options.DegreesField).values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
+      let x_c  = dist * Math.sin(degrees_to_radians(rot));
+      let y_c  = dist * Math.cos(degrees_to_radians(rot));
+      if(options.GradientSource === "Color"){
+        options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={options.DotsColor} />);
+      }
+      if(options.GradientSource === "Gradient"){
+        if(findField(data, options.DegreesField) === 0){
+          fieldserrot = true;
+        }
+        else{
+          if(options.PowerField === "time"){
+            const gradientArray = new Gradient()
+            .setColorGradient.apply(null, options.Gradient.split(" "))
+            .setMidpoint(100)
+            .getColor(maping_value(power, min_time, max_time, 1, 100));
+            options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={gradientArray} />);
+          }
+          else{
+            if(power === 0){ power++;}
+            const gradientArray = new Gradient()
+              .setColorGradient.apply(null, options.Gradient.split(" "))
+              .setMidpoint(100)
+              .getColor(power);
+            options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={gradientArray} />);
+          }
+        }
+      }
     }
   }
+
 
   return (
     <div
@@ -118,7 +146,7 @@ export function Panel({
         `
       )}
     >
-      {!(out_of_range || start_higher_than_end) && <svg
+      {!(out_of_range || start_higher_than_end || fieldserrot) && <svg
         className={styles.svg}
         width={width}
         height={height}
@@ -135,6 +163,7 @@ export function Panel({
       <div className={styles.textBox}>
         {(out_of_range) && <div>Out of range</div>}
         {(start_higher_than_end) && <div>the initial value cannot be higher than the final value</div>}
+        {(fieldserrot) && <div>Error. Select fields</div>}
       </div>
     </div>
   );

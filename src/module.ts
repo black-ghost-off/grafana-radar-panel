@@ -124,8 +124,8 @@ export const plugin = new PanelPlugin<Options>(Panel)
           //   label: 'Time',
           // },
           {
-            value: '3dField',
-            label: '3d field',
+            value: 'Gradient',
+            label: 'Gradient',
           },
         ],
       },
@@ -163,6 +163,7 @@ export const plugin = new PanelPlugin<Options>(Panel)
     .addFieldNamePicker({
       path: "PowerField",
       name: "Power Field",
+      showIf: (config: Options) => config.GradientSource !== "Color",
     })
   })
   // .setNoPadding()
