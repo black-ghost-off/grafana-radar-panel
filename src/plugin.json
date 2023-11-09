@@ -18,7 +18,11 @@
     "screenshots": [
       {
         "name": "Static Image Panel",
-        "path": "img/view.png"
+        "path": "img/view1.png"
+      },
+      {
+        "name": "Static Image Panel",
+        "path": "img/view2.png"
       }
     ],    "version": "%VERSION%",
     "updated": "%TODAY%"
