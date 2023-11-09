@@ -113,8 +113,7 @@ export function Panel({
       let y_c  = dist * Math.cos(degrees_to_radians(rot));
 
       console.log(options);
-
-
+        
       if(options.GradientSource === "Color"){
         options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={options.DotsColor} />);
       }
