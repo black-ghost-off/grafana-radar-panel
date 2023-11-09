@@ -1,4 +1,4 @@
-![view1](./src/img/logo.svg)
+![view1](./src/img/logo.svg =250x)
 
 ![view1](./src/img/view1.png)
 ![view1](./src/img/view2.png)
