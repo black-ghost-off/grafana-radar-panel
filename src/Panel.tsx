@@ -90,11 +90,11 @@ export function Panel({
     let rot  = maping_value(data.series[2].fields[1].values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
     let x_c  = dist * Math.sin(degrees_to_radians(rot));
     let y_c  = dist * Math.cos(degrees_to_radians(rot));
-    if(options.GradientSource == "Color"){
+    if(options.GradientSource === "Color"){
       options_as.push(<circle cx={x_c} cy={y_c} r="1" fill={options.DotsColor} />);
     }
-    if(options.GradientSource == "3dField"){
-      if(power == 0){ power++;}
+    if(options.GradientSource === "3dField"){
+      if(power === 0){ power++;}
       const gradientArray = new Gradient()
         .setColorGradient.apply(null, options.Gradient.split(" "))
         .setMidpoint(100)

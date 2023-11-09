@@ -132,13 +132,15 @@ export const plugin = new PanelPlugin<Options>(Panel)
     })
     .addTextInput({
       path: 'Gradient',
+      name: "",
       defaultValue: "#ffffff #000000",
-      showIf: (config: Options) => config.GradientSource != "Color",
+      showIf: (config: Options) => config.GradientSource !== "Color",
     })
     .addColorPicker({
       path: 'DotsColor',
+      name: "",
       defaultValue: '#ffffff',
-      showIf: (config: Options) => config.GradientSource == "Color",
+      showIf: (config: Options) => config.GradientSource === "Color",
     })
   })
   // .setNoPadding()
