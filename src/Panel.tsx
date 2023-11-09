@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataFrame, getFieldDisplayName, Field, TIME_SERIES_TIME_FIELD_NAME, } from '@grafana/data';
 import { PanelProps } from '@grafana/data';
 import { Options } from 'types';
 import { css, cx } from '@emotion/css';
@@ -99,7 +98,7 @@ export function Panel({
     let x_c  = dist * Math.sin(degrees_to_radians(rot));
     let y_c  = dist * Math.cos(degrees_to_radians(rot));
     if(options.GradientSource === "Color"){
-      options_as.push(<circle cx={x_c} cy={y_c} r="1" fill={options.DotsColor} />);
+      options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={options.DotsColor} />);
     }
     if(options.GradientSource === "3dField"){
       if(power === 0){ power++;}
@@ -108,7 +107,7 @@ export function Panel({
         .setMidpoint(100)
         .getColor(power);
       
-      options_as.push(<circle cx={x_c} cy={y_c} r="1" fill={gradientArray} />);
+      options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={gradientArray} />);
     }
   }
 
