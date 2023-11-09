@@ -1,3 +1,5 @@
+![view1](./src/img/view1.png)
+
 1. Install dependencies
 
    ```bash
