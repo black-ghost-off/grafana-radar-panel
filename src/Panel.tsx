@@ -11,6 +11,7 @@ import Gradient from "javascript-color-gradient";
 function findField(frame: any, name: string) {
   for(let seria of frame.series){
     for(let field of seria.fields){
+
       if(field.name === name){return field}
     }
   }
@@ -66,6 +67,8 @@ export function Panel({
   let zero_offset = 0;
   let distance_line_step = (100 - zero_offset) / distance_line_steps;
 
+  // console.log(data);
+  // console.log(options)
 
   if(!options.is360degrees){
     for (let distance_line = zero_offset; distance_line <= 100 ; distance_line += distance_line_step){
@@ -98,15 +101,20 @@ export function Panel({
       if(dist < 0) {dist = 0;}
       if(dist > 100) {dist = 100;}
       dist = maping_value(dist,0,100,zero_offset*scale_size,r*scale_size);
+      let power, min_time, max_time;
+      if(options.GradientSource !== "Color"){
+        power = findField(data, options.PowerField).values[inc_field];
+        min_time = findField(data, options.PowerField).values[0];
+        max_time = findField(data, options.PowerField).values[findField(data, options.PowerField).values.length-1];
+      }
 
-      let power = findField(data, options.PowerField).values[inc_field];
-      
-      let min_time = findField(data, options.PowerField).values[0];
-      let max_time = findField(data, options.PowerField).values[findField(data, options.PowerField).values.length-1];
-
-      let rot  = maping_value(findField(data, options.DegreesField).values[inc_field],0,360,-start * scale_range,-end * scale_range) - rotate_radar;
+      let rot  = findField(data, options.DegreesField).values[inc_field] - rotate_radar;
       let x_c  = dist * Math.sin(degrees_to_radians(rot));
       let y_c  = dist * Math.cos(degrees_to_radians(rot));
+
+      console.log(options);
+
+
       if(options.GradientSource === "Color"){
         options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={options.DotsColor} />);
       }
@@ -115,7 +123,7 @@ export function Panel({
           fieldserrot = true;
         }
         else{
-          if(options.PowerField === "time"){
+          if(options.PowerField === "time" || options.PowerField === "Time"){
             const gradientArray = new Gradient()
             .setColorGradient.apply(null, options.Gradient.split(" "))
             .setMidpoint(100)
