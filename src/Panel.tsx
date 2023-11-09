@@ -86,8 +86,6 @@ export function Panel({
   }  
   let data_len = data.series[0].fields[0].values.length;
 
-  // console.log(findField(data, options.DegreesField));
-
   for (let inc_field = 0; inc_field < data_len; inc_field++){
     let dist = findField(data, options.DistanceField).values[inc_field];
     if(dist < 0) {dist = 0;}
@@ -106,7 +104,6 @@ export function Panel({
         .setColorGradient.apply(null, options.Gradient.split(" "))
         .setMidpoint(100)
         .getColor(power);
-      
       options_as.push(<circle cx={x_c} cy={y_c} r={options.DotsSize} fill={gradientArray} />);
     }
   }

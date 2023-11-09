@@ -58,10 +58,20 @@ jobs:
           echo Please generate a Grafana access policy token: https://grafana.com/developers/plugin-tools/publish-a-plugin/sign-a-plugin#generate-an-access-policy-token
           echo Once done please follow the instructions found here: https://github.com/${{github.repository}}/blob/main/README.md#using-github-actions-release-workflow
         if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN == '' }}
-
-      - name: Sign plugin
-        run: npm run sign
+        
+      - name: Start grafana docker
+        run: docker-compose up -d
         if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
+
+        
+      - name: Sign plugin
+        run: npx @grafana/sign-plugin@latest --rootUrls http://localhost:3001/
+        if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
+
+      - name: Stop grafana docker
+        run: docker-compose down
+        if: ${{ env.GRAFANA_ACCESS_POLICY_TOKEN != '' }}
+
 
       - name: Get plugin metadata
         id: metadata
