@@ -1,4 +1,7 @@
+![view1](./src/img/logo.svg)
+
 ![view1](./src/img/view1.png)
+![view1](./src/img/view2.png)
 
 1. Install dependencies
 
