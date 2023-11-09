@@ -11,7 +11,7 @@ import Gradient from "javascript-color-gradient";
 function findField(frame: any, name: string) {
   for(let seria of frame.series){
     for(let field of seria.fields){
-      if(field.name == name){return field}
+      if(field.name === name){return field}
     }
   }
   return 0;
