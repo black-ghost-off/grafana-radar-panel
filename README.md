@@ -1,4 +1,7 @@
 ![view1](./src/img/logo.svg =250x)
+![](./src/img/logo.svg | width=100)
+
+
 
 ![view1](./src/img/view1.png)
 ![view1](./src/img/view2.png)
