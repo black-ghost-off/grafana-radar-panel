@@ -1,0 +1,62 @@
+{
+    "datasource": {
+      "type": "testdata",
+      "uid": "d076f6b3-e8ed-4745-beaa-ae8e1a60c044"
+    },
+    "gridPos": {
+      "h": 8,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "id": 1,
+    "options": {
+      "is360degrees": true,
+      "StartDegree": -90,
+      "EndDegree": 90,
+      "ScaleRange": 1,
+      "StepsDegrees": 5,
+      "StepsDistance": 4,
+      "RotateRadar": 0,
+      "ScaleSize": 1,
+      "XMove": 0,
+      "YMove": 0,
+      "GradientSource": "Gradient",
+      "Gradient": "#ff0000 #0000FF",
+      "DotsColor": "#ffffff",
+      "DotsSize": 3,
+      "DegreesField": "A-series",
+      "DistanceField": "B-series",
+      "PowerField": "time"
+    },
+    "targets": [
+      {
+        "datasource": {
+          "type": "testdata",
+          "uid": "d076f6b3-e8ed-4745-beaa-ae8e1a60c044"
+        },
+        "key": "Q-5c5843f0-2386-470e-977f-868b072d9967-0",
+        "max": 360,
+        "min": 0,
+        "refId": "A",
+        "scenarioId": "random_walk",
+        "seriesCount": 1,
+        "spread": 32
+      },
+      {
+        "datasource": {
+          "type": "testdata",
+          "uid": "d076f6b3-e8ed-4745-beaa-ae8e1a60c044"
+        },
+        "hide": false,
+        "max": 100,
+        "min": 10,
+        "refId": "B",
+        "scenarioId": "random_walk",
+        "seriesCount": 1,
+        "spread": 14
+      }
+    ],
+    "title": "New Panel",
+    "type": "blackghostoff-radar-panel"
+  }
